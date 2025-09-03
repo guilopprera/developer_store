@@ -1,6 +1,6 @@
-﻿namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales;
+﻿namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetAllSales;
 
-public sealed class GetAllSalesResponse
+public class GetAllSalesResponse
 {
     public Guid Id { get; set; }
     public string SaleNumber { get; set; } = string.Empty;

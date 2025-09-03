@@ -5,10 +5,7 @@ using Ambev.DeveloperEvaluation.Domain.Repositories;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.GetAllSales;
 
-/// <summary>
-/// Handler for processing GetAllSalesCommand requests.
-/// </summary>
-public sealed class GetAllSalesHandler : IRequestHandler<GetAllSalesCommand, List<GetAllSalesResult>>
+public class GetAllSalesHandler : IRequestHandler<GetAllSalesCommand, List<GetAllSalesResult>>
 {
     private readonly ISaleRepository _saleRepository;
     private readonly IMapper _mapper;
@@ -21,22 +18,30 @@ public sealed class GetAllSalesHandler : IRequestHandler<GetAllSalesCommand, Lis
 
     public async Task<List<GetAllSalesResult>> Handle(GetAllSalesCommand command, CancellationToken ct)
     {
-        var validator = new GetAllSalesCommandValidator();
-        var validation = await validator.ValidateAsync(command, ct);
-        if (!validation.IsValid)
-            throw new ValidationException(validation.Errors);
+        try
+        {
+            var validator = new GetAllSalesCommandValidator();
+            var validation = await validator.ValidateAsync(command, ct);
 
-        var sales = await _saleRepository.GetAllAsync(ct);
+            if (!validation.IsValid)
+                throw new ValidationException(validation.Errors);
 
-        var page = command.Page <= 0 ? 1 : command.Page;
-        var size = command.Size <= 0 ? 10 : command.Size;
+            var sales = await _saleRepository.GetAllAsync(ct);
 
-        var paged = sales
-            .OrderByDescending(s => s.Date)
-            .Skip((page - 1) * size)
-            .Take(size)
-            .ToList();
+            var page = command.Page <= 0 ? 1 : command.Page;
+            var size = command.Size <= 0 ? 10 : command.Size;
 
-        return _mapper.Map<List<GetAllSalesResult>>(paged);
+            var paged = sales
+                .OrderByDescending(s => s.Date)
+                .Skip((page - 1) * size)
+                .Take(size)
+                .ToList();
+
+            return _mapper.Map<List<GetAllSalesResult>>(paged);
+        }
+        catch
+        {
+            throw new InvalidOperationException("Error retrieving sales list");
+        }
     }
 }

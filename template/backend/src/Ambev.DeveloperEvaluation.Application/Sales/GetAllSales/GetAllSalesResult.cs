@@ -1,6 +1,6 @@
 ﻿namespace Ambev.DeveloperEvaluation.Application.Sales.GetAllSales;
 
-public sealed class GetAllSalesItemResult
+public class GetAllSalesItemResult
 {
     public Guid ProductId { get; init; }
     public int Quantity { get; init; }
@@ -9,7 +9,7 @@ public sealed class GetAllSalesItemResult
     public decimal Total { get; init; }
 }
 
-public sealed class GetAllSalesResult
+public class GetAllSalesResult
 {
     public Guid Id { get; init; }
     public string SaleNumber { get; init; } = string.Empty;

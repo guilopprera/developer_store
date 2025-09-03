@@ -2,7 +2,7 @@
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.CancelSale;
 
-public sealed class CancelSaleCommand : IRequest<Unit>
+public class CancelSaleCommand : IRequest<CancelSaleResult>
 {
     public Guid Id { get; set; }
     public CancelSaleCommand() { }

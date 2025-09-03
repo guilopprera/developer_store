@@ -23,6 +23,8 @@ public class SaleConfiguration : IEntityTypeConfiguration<Sale>
 
         builder.Property(s => s.Branch).IsRequired().HasMaxLength(100);
 
+        builder.Ignore(s => s.TotalAmount);
+
         builder.Property(s => s.Date).IsRequired();
 
         builder.Property(s => s.Cancelled).IsRequired().HasDefaultValue(false);

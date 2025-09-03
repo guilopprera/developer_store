@@ -1,6 +1,6 @@
 ﻿namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales;
 
-public sealed class CreateSaleResponse
+public class CreateSaleResponse
 {
     public Guid Id { get; set; }
     public string SaleNumber { get; set; } = string.Empty;
@@ -13,7 +13,7 @@ public sealed class CreateSaleResponse
     public List<SaleItemResponse> Items { get; set; } = new();
 }
 
-public sealed class SaleItemResponse
+public class SaleItemResponse
 {
     public Guid ProductId { get; set; }
     public int Quantity { get; set; }

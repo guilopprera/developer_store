@@ -1,6 +1,6 @@
-﻿namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales;
+﻿namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.UpdateSale;
 
-public sealed class UpdateSaleResponse
+public class UpdateSaleResponse
 {
     public Guid Id { get; set; }
     public string SaleNumber { get; set; } = string.Empty;

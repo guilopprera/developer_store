@@ -1,11 +1,9 @@
-﻿using Ambev.DeveloperEvaluation.Application.Sales.GetSale;
-using Ambev.DeveloperEvaluation.Application.Sales.UpdateSale;
-using Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetSale;
+﻿using Ambev.DeveloperEvaluation.Application.Sales.UpdateSale;
 using AutoMapper;
 
-namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales;
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.UpdateSale;
 
-public sealed class UpdateSaleProfile : Profile
+public class UpdateSaleProfile : Profile
 {
     public UpdateSaleProfile()
     {

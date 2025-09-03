@@ -2,7 +2,7 @@
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale;
 
-public sealed class UpdateSaleValidator : AbstractValidator<UpdateSaleCommand>
+public class UpdateSaleValidator : AbstractValidator<UpdateSaleCommand>
 {
     public UpdateSaleValidator()
     {

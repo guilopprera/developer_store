@@ -5,7 +5,7 @@ using Ambev.DeveloperEvaluation.Domain.Repositories;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale;
 
-public sealed class UpdateSaleHandler : IRequestHandler<UpdateSaleCommand, UpdateSaleResult>
+public class UpdateSaleHandler : IRequestHandler<UpdateSaleCommand, UpdateSaleResult>
 {
     private readonly ISaleRepository _repo;
     private readonly IMapper _mapper;
@@ -18,22 +18,32 @@ public sealed class UpdateSaleHandler : IRequestHandler<UpdateSaleCommand, Updat
 
     public async Task<UpdateSaleResult> Handle(UpdateSaleCommand command, CancellationToken ct)
     {
-        var validation = await new UpdateSaleValidator().ValidateAsync(command, ct);
-        if (!validation.IsValid) throw new ValidationException(validation.Errors);
+        try
+        {
+            var validation = await new UpdateSaleValidator().ValidateAsync(command, ct);
 
-        var sale = await _repo.GetByIdWithItemsAsync(command.Id, ct)
-                   ?? throw new KeyNotFoundException("Sale not found");
+            if (!validation.IsValid)
+                throw new ValidationException(validation.Errors);
 
-        if (sale.Cancelled)
-            throw new InvalidOperationException("Cannot update a cancelled sale.");
+            var sale = await _repo.GetByIdWithItemsAsync(command.Id, ct)
+                       ?? throw new KeyNotFoundException("Sale not found");
 
-        sale.UpdateHeader(command.CustomerName, command.Branch);
+            if (sale.Cancelled)
+                throw new InvalidOperationException("Cannot update a cancelled sale.");
 
-        var newItems = command.Items.Select(i => (i.ProductId, i.ProductName, i.UnitPrice, i.Quantity));
-        sale.ReplaceItems(newItems);
+            sale.UpdateHeader(command.CustomerName, command.Branch);
 
-        await _repo.UpdateAsync(sale, ct);
+            var newItems = command.Items.Select(i => (i.ProductId, i.ProductName, i.UnitPrice, i.Quantity));
+            sale.ReplaceItems(newItems);
 
-        return _mapper.Map<UpdateSaleResult>(sale);
+            await _repo.UpdateAsync(sale, ct);
+
+            return _mapper.Map<UpdateSaleResult>(sale);
+        }
+        catch
+        {
+            throw new InvalidOperationException("Error updating sale");
+        }
+
     }
 }

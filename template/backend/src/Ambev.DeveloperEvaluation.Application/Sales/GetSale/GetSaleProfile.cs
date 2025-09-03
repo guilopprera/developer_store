@@ -3,7 +3,7 @@ using Ambev.DeveloperEvaluation.Domain.Entities;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.GetSale;
 
-public sealed class GetAllSalesProfile : Profile
+public class GetAllSalesProfile : Profile
 {
     public GetAllSalesProfile()
     {

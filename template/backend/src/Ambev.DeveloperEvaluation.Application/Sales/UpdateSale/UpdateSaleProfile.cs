@@ -3,7 +3,7 @@ using Ambev.DeveloperEvaluation.Domain.Entities;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale;
 
-public sealed class UpdateSaleProfile : Profile
+public class UpdateSaleProfile : Profile
 {
     public UpdateSaleProfile()
     {

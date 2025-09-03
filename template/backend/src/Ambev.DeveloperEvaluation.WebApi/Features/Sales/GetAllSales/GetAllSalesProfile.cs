@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Ambev.DeveloperEvaluation.Application.Sales.GetAllSales;
 
-namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales;
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetAllSales;
 
 public class GetAllSalesProfile : Profile
 {

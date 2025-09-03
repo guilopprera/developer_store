@@ -1,10 +1,10 @@
-﻿using MediatR;
+﻿using Ambev.DeveloperEvaluation.Domain.Repositories;
 using FluentValidation;
-using Ambev.DeveloperEvaluation.Domain.Repositories;
+using MediatR;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.CancelSale;
 
-public sealed class CancelSaleHandler : IRequestHandler<CancelSaleCommand, Unit>
+public class CancelSaleHandler : IRequestHandler<CancelSaleCommand, CancelSaleResult>
 {
     private readonly ISaleRepository _repo;
 
@@ -13,18 +13,25 @@ public sealed class CancelSaleHandler : IRequestHandler<CancelSaleCommand, Unit>
         _repo = repo;
     }
 
-    public async Task<Unit> Handle(CancelSaleCommand command, CancellationToken ct)
+    public async Task<CancelSaleResult> Handle(CancelSaleCommand request, CancellationToken ct)
     {
-        var validator = new CancelSaleCommandValidator();
-        var validation = await validator.ValidateAsync(command, ct);
-        if (!validation.IsValid) throw new ValidationException(validation.Errors);
+        try
+        {
+            var validator = new CancelSaleCommandValidator();
+            var validation = await validator.ValidateAsync(request, ct);
+            if (!validation.IsValid) throw new ValidationException(validation.Errors);
 
-        var sale = await _repo.GetByIdAsync(command.Id, ct)
-                   ?? throw new KeyNotFoundException($"Sale with Id {command.Id} not found");
+            var sale = await _repo.GetByIdAsync(request.Id, ct)
+                       ?? throw new KeyNotFoundException($"Sale with Id {request.Id} not found");
 
-        sale.Cancel();
-        await _repo.UpdateAsync(sale, ct);
+            sale.Cancel();
+            await _repo.UpdateAsync(sale, ct);
 
-        return Unit.Value;
+            return new CancelSaleResult { Success = true};
+        }
+        catch
+        {
+            throw new InvalidOperationException("Error cancelling sale");
+        }
     }
 }

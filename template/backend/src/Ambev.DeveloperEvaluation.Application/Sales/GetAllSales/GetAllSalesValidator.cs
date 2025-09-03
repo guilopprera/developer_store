@@ -2,10 +2,7 @@
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.GetAllSales;
 
-/// <summary>
-/// Validator for <see cref="GetAllSalesCommand"/>.
-/// </summary>
-public sealed class GetAllSalesCommandValidator : AbstractValidator<GetAllSalesCommand>
+public class GetAllSalesCommandValidator : AbstractValidator<GetAllSalesCommand>
 {
     public GetAllSalesCommandValidator()
     {

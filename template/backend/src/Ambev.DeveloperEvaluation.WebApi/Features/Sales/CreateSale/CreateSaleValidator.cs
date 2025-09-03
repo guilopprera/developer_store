@@ -2,13 +2,9 @@
 
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales;
 
-/// <summary>
-/// Validates basic HTTP input for CreateSaleRequest before mapping to Application.
-/// Focus: sintaxe e formato mínimo.
-/// </summary>
-public sealed class CreateSaleRequestValidator : AbstractValidator<CreateSaleRequest>
+public class CreateSaleValidator : AbstractValidator<CreateSaleRequest>
 {
-    public CreateSaleRequestValidator()
+    public CreateSaleValidator()
     {
         RuleFor(x => x.CustomerId)
             .NotEmpty().WithMessage("CustomerId is required.");

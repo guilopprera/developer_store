@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
 
-namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales;
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.UpdateSale;
 
-public sealed class UpdateSaleRequestValidator : AbstractValidator<UpdateSaleRequest>
+public class UpdateSaleRequestValidator : AbstractValidator<UpdateSaleRequest>
 {
     public UpdateSaleRequestValidator()
     {

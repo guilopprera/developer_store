@@ -5,7 +5,7 @@ using Ambev.DeveloperEvaluation.Domain.Repositories;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.GetSale;
 
-public sealed class GetAllSalesHandler : IRequestHandler<GetSaleCommand, GetSaleResult>
+public class GetAllSalesHandler : IRequestHandler<GetSaleCommand, GetSaleResult>
 {
     private readonly ISaleRepository _saleRepository;
     private readonly IMapper _mapper;
@@ -18,15 +18,23 @@ public sealed class GetAllSalesHandler : IRequestHandler<GetSaleCommand, GetSale
 
     public async Task<GetSaleResult> Handle(GetSaleCommand command, CancellationToken ct)
     {
-        var validator = new GetSaleCommandValidator();
-        var validation = await validator.ValidateAsync(command, ct);
-        if (!validation.IsValid)
-            throw new ValidationException(validation.Errors);
+        try
+        {
+            var validator = new GetSaleCommandValidator();
+            var validation = await validator.ValidateAsync(command, ct);
+            if (!validation.IsValid)
+                throw new ValidationException(validation.Errors);
 
-        var sale = await _saleRepository.GetByIdAsync(command.Id, ct);
-        if (sale is null)
-            throw new KeyNotFoundException($"Sale with Id {command.Id} not found.");
+            var sale = await _saleRepository.GetByIdAsync(command.Id, ct);
+            if (sale is null)
+                throw new KeyNotFoundException($"Sale with Id {command.Id} not found.");
 
-        return _mapper.Map<GetSaleResult>(sale);
+            return _mapper.Map<GetSaleResult>(sale);
+        }
+        catch
+        {
+            throw new InvalidOperationException("Error retrieving sale");
+        }
+
     }
 }

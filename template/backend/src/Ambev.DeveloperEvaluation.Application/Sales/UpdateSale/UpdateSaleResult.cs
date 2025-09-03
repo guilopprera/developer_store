@@ -1,6 +1,6 @@
 ﻿namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale;
 
-public sealed class UpdateSaleItemResult
+public class UpdateSaleItemResult
 {
     public Guid ProductId { get; set; }
     public string ProductName { get; set; } = string.Empty;
@@ -10,7 +10,7 @@ public sealed class UpdateSaleItemResult
     public decimal Total { get; set; }
 }
 
-public sealed class UpdateSaleResult
+public class UpdateSaleResult
 {
     public Guid Id { get; set; }
     public string SaleNumber { get; set; } = string.Empty;

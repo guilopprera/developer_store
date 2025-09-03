@@ -2,9 +2,6 @@
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
 
-/// <summary>
-/// Validator for <see cref="CreateSaleCommand"/> that defines validation rules for creating a sale.
-/// </summary>
 public class CreateSaleCommandValidator : AbstractValidator<CreateSaleCommand>
 {
     public CreateSaleCommandValidator()

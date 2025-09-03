@@ -2,13 +2,10 @@
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.GetAllSales;
 
-/// <summary>
-/// Command to retrieve all sales with pagination.
-/// </summary>
-public sealed class GetAllSalesCommand : IRequest<List<GetAllSalesResult>>
+public class GetAllSalesCommand : IRequest<List<GetAllSalesResult>>
 {
-    public int Page { get; set; } = 1;
-    public int Size { get; set; } = 10;
+    public int Page { get; set; }
+    public int Size { get; set; }
 
     public GetAllSalesCommand() { }
 

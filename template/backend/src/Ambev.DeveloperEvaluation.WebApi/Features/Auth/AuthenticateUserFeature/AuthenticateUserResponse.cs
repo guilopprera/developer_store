@@ -5,7 +5,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Auth.AuthenticateUserFeature
 /// <summary>
 /// Represents the response returned after user authentication
 /// </summary>
-public sealed class AuthenticateUserResponse
+public class AuthenticateUserResponse
 {
     /// <summary>
     /// Gets or sets the JWT token for authenticated user

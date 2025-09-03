@@ -2,7 +2,7 @@
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale;
 
-public sealed class UpdateSaleCommand : IRequest<UpdateSaleResult>
+public class UpdateSaleCommand : IRequest<UpdateSaleResult>
 {
     public Guid Id { get; set; }
 
@@ -12,7 +12,7 @@ public sealed class UpdateSaleCommand : IRequest<UpdateSaleResult>
     public List<UpdateSaleItemDto> Items { get; set; } = new();
 }
 
-public sealed class UpdateSaleItemDto
+public class UpdateSaleItemDto
 {
     public Guid ProductId { get; set; }
     public string ProductName { get; set; } = string.Empty; 
