@@ -30,15 +30,10 @@ Documentação interativa via **Swagger**.
    git clone https://github.com/seu-usuario/developer_store.git
    cd developer_store
 
-1. Configure o banco em appsettings.json (WebApi):
+2. Configure o banco em appsettings.json (WebApi):
    ```bash
-   git clone https://github.com/seu-usuario/developer_store.git
-   cd developer_store
-
-2. Clone o repositório:
-   ```bash
-     "ConnectionStrings": {
-     "DefaultConnection": "Host=localhost;Port=5432;Database=devevaluation;Username=postgres;Password=123456"
+   "ConnectionStrings": {
+     "DefaultConnection": "Host=localhost;Port=5432;Database=SEU_BANCO;Username=SEU_USUARIO;Password=SUA_SENHA"
    }
 
 3. Rode as Migrations:
