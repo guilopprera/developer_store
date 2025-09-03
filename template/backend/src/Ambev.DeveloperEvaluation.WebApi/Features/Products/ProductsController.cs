@@ -79,8 +79,9 @@ public class ProductsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Delete(Guid id, CancellationToken ct)
     {
-        var req = await _mediator.Send(new DeleteProductCommand(id), ct);
+        var command = _mapper.Map<DeleteProductCommand>(id);
+        var result = await _mediator.Send(command, ct);
 
-        return req.Success ? NoContent() : NotFound();
+        return Ok(result.Message);
     }
 }

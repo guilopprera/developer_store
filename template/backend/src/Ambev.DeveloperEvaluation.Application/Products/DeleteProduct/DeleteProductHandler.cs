@@ -25,7 +25,7 @@ public class DeleteProductHandler : IRequestHandler<DeleteProductCommand, Delete
 
             await _productRepository.DeleteAsync(request.Id, cancellationToken);
 
-            return new DeleteProductResponse { Success = true };
+            return new DeleteProductResponse { Message = "Success" };
         }
         catch
         {

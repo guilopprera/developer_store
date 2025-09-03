@@ -7,8 +7,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.ProductsCategory.GetProductC
     {
         public GetProductCategoriesProfile()
         {
-            CreateMap<GetProductCategoriesResult, GetProductCategoriesResponse>()
-            .ForMember(d => d.Categories, o => o.MapFrom(s => s.Categories));
+            CreateMap<GetProductCategoriesResult, GetProductCategoriesResponse>();
         }
     }
 }

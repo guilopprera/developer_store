@@ -102,12 +102,14 @@ public class ProductRepository : IProductRepository
         await _context.SaveChangesAsync(ct);
     }
 
-    public async Task<bool> DeleteAsync(Guid id, CancellationToken ct)
+    public async Task<string> DeleteAsync(Guid id, CancellationToken ct)
     {
         var entity = await GetByIdAsync(id, ct);
-        if (entity is null) return false;
+        if (entity is null) 
+            return "Error trying to remove product";
+
         _context.Products.Remove(entity);
         await _context.SaveChangesAsync(ct);
-        return true;
+        return "Success";
     }
 }

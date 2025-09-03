@@ -10,5 +10,5 @@ public interface IProductRepository
     Task<(IReadOnlyList<Product> Products, int Total)> GetByCategoryAsync(string category, int page, int size, string? order, CancellationToken ct);
     Task<Product> CreateAsync(Product product, CancellationToken ct);
     Task UpdateAsync(Product product, CancellationToken ct);
-    Task<bool> DeleteAsync(Guid id, CancellationToken ct);
+    Task<string> DeleteAsync(Guid id, CancellationToken ct);
 }
