@@ -30,21 +30,25 @@ Documentação interativa via **Swagger**.
    git clone https://github.com/seu-usuario/developer_store.git
    cd developer_store
 
-2. Configure o banco em appsettings.json (WebApi):
+1. Configure o banco em appsettings.json (WebApi):
+   ```bash
+   git clone https://github.com/seu-usuario/developer_store.git
+   cd developer_store
 
-"ConnectionStrings": {
-  "DefaultConnection": "Host=localhost;Port=5432;Database=devevaluation;Username=postgres;Password=123456"
-}
+2. Clone o repositório:
+   ```bash
+     "ConnectionStrings": {
+     "DefaultConnection": "Host=localhost;Port=5432;Database=devevaluation;Username=postgres;Password=123456"
+   }
 
-3. Rode as migrations:
-
-dotnet ef migrations add InitDatabase -p src/Ambev.DeveloperEvaluation.ORM -s src/Ambev.DeveloperEvaluation.WebApi
-dotnet ef database update -p src/Ambev.DeveloperEvaluation.ORM -s src/Ambev.DeveloperEvaluation.WebApi
+3. Clone o repositório:
+   ```bash
+   dotnet ef migrations add InitDatabase -p src/Ambev.DeveloperEvaluation.ORM -s src/Ambev.DeveloperEvaluation.WebApi
+   dotnet ef database update -p src/Ambev.DeveloperEvaluation.ORM -s src/Ambev.DeveloperEvaluation.WebApi
 
 4. Execute a aplicação:
-
-dotnet run --project src/Ambev.DeveloperEvaluation.WebApi
-
+   ```bash
+   dotnet run --project src/Ambev.DeveloperEvaluation.WebApi
 
 📖 Endpoints
 # Users
