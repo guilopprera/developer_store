@@ -4,6 +4,7 @@ using Ambev.DeveloperEvaluation.Application.Sales.GetAllSales;
 using Ambev.DeveloperEvaluation.Application.Sales.GetSale;
 using Ambev.DeveloperEvaluation.Application.Sales.UpdateSale;
 using Ambev.DeveloperEvaluation.WebApi.Features.Sales;
+using Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetAllSales;
 using Ambev.DeveloperEvaluation.WebApi.Features.Sales.UpdateSale;
 using AutoMapper;
 using MediatR;
@@ -25,9 +26,15 @@ public class SalesController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int size = 10, CancellationToken ct = default)
+    [ProducesResponseType(typeof(GetAllSalesPageResponse), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetAll(
+    [FromQuery(Name = "_page")] int page = 1,
+    [FromQuery(Name = "_size")] int size = 10,
+    [FromQuery(Name = "_order")] string? order = null,
+    CancellationToken ct = default)
     {
-        var result = await _mediator.Send(new GetAllSalesCommand(page, size), ct);
+        var result = await _mediator.Send(new GetAllSalesCommand(page, size, order), ct);
+        var dto = _mapper.Map<GetAllSalesPageResponse>(result);
         return Ok(result);
     }
 

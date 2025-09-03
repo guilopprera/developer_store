@@ -1,11 +1,11 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using Ambev.DeveloperEvaluation.Domain.Repositories;
+using AutoMapper;
 using FluentValidation;
-using Ambev.DeveloperEvaluation.Domain.Repositories;
+using MediatR;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.GetAllSales;
 
-public class GetAllSalesHandler : IRequestHandler<GetAllSalesCommand, List<GetAllSalesResult>>
+public class GetAllSalesHandler : IRequestHandler<GetAllSalesCommand, GetAllSalesPageResult>
 {
     private readonly ISaleRepository _saleRepository;
     private readonly IMapper _mapper;
@@ -16,28 +16,22 @@ public class GetAllSalesHandler : IRequestHandler<GetAllSalesCommand, List<GetAl
         _mapper = mapper;
     }
 
-    public async Task<List<GetAllSalesResult>> Handle(GetAllSalesCommand command, CancellationToken ct)
+    public async Task<GetAllSalesPageResult> Handle(GetAllSalesCommand request, CancellationToken ct)
     {
         try
         {
             var validator = new GetAllSalesCommandValidator();
-            var validation = await validator.ValidateAsync(command, ct);
+            var validation = await validator.ValidateAsync(request, ct);
 
             if (!validation.IsValid)
                 throw new ValidationException(validation.Errors);
 
-            var sales = await _saleRepository.GetAllAsync(ct);
+            var (items, total) = await _saleRepository.GetAllAsync(request.Page, request.Size, request.Order, ct);
+            var data = _mapper.Map<List<GetAllSalesResult>>(items);
 
-            var page = command.Page <= 0 ? 1 : command.Page;
-            var size = command.Size <= 0 ? 10 : command.Size;
+            var totalPages = (int)Math.Ceiling(total / (double)request.Size);
 
-            var paged = sales
-                .OrderByDescending(s => s.Date)
-                .Skip((page - 1) * size)
-                .Take(size)
-                .ToList();
-
-            return _mapper.Map<List<GetAllSalesResult>>(paged);
+            return new GetAllSalesPageResult(data, total, request.Page, totalPages);
         }
         catch
         {

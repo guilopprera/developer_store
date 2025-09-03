@@ -1,5 +1,4 @@
-using Ambev.DeveloperEvaluation.Domain.Repositories;
-using Ambev.DeveloperEvaluation.WebApi.Features.Products.GetAllProducts;
+﻿using Ambev.DeveloperEvaluation.Domain.Repositories;
 using AutoMapper;
 using MediatR;
 
@@ -22,8 +21,9 @@ public class GetAllProductsHandler : IRequestHandler<GetAllProductsCommand, GetA
             var (items, total) = await _repo.GetAllAsync(request.Page, request.Size, request.Order, ct);
             var data = _mapper.Map<List<GetAllProductsResult>>(items);
 
+            var totalPages = (int)Math.Ceiling(total / (double)request.Size);
 
-            return new GetAllProductsPageResult(data, total, request.Page, request.Size);
+            return new GetAllProductsPageResult(data, total, request.Page, totalPages);
         }
         catch
         {

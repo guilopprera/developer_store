@@ -1,20 +1,17 @@
-﻿using Ambev.DeveloperEvaluation.Application.Products.GetAllProducts;
-
-namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.GetAllProducts;
+namespace Ambev.DeveloperEvaluation.Application.Products.GetAllProducts;
 
 public class GetAllProductsPageResult
 {
-    public GetAllProductsPageResult(IReadOnlyList<GetAllProductsResult> products, int totalItems, int currentPagem, int totalPages)
+    public GetAllProductsPageResult(IReadOnlyList<GetAllProductsResult> products, int totalItems, int currentPage, int totalPages)
     {
         Products = products;
         TotalItems = totalItems;
-        CurrentPage = currentPagem;
+        CurrentPage = currentPage;
         TotalPages = totalPages;
-
     }
-    public IReadOnlyList<GetAllProductsResult> Products { get; set; }
-    public int TotalItems { get; set; }
-    public int CurrentPage { get; set; }
-    public int TotalPages { get; set; }
 
+    public IReadOnlyList<GetAllProductsResult> Products { get; }
+    public int TotalItems { get; }
+    public int CurrentPage { get; }
+    public int TotalPages { get; }
 }

@@ -2,16 +2,16 @@
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.GetAllSales;
 
-public class GetAllSalesCommand : IRequest<List<GetAllSalesResult>>
+public class GetAllSalesCommand : IRequest<GetAllSalesPageResult>
 {
-    public int Page { get; set; }
-    public int Size { get; set; }
-
-    public GetAllSalesCommand() { }
-
-    public GetAllSalesCommand(int page, int size)
+    public GetAllSalesCommand(int page, int size, string? order)
     {
         Page = page;
         Size = size;
+        Order = order;
     }
+
+    public int Page { get; set; }
+    public int Size { get; set; }
+    public string? Order { get; set; }
 }

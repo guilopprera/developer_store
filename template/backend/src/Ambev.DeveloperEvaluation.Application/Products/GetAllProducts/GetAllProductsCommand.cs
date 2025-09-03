@@ -1,4 +1,3 @@
-using Ambev.DeveloperEvaluation.WebApi.Features.Products.GetAllProducts;
 using MediatR;
 
 namespace Ambev.DeveloperEvaluation.Application.Products.GetAllProducts;

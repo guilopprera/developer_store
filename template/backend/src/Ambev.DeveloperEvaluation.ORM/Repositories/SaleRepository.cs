@@ -1,5 +1,6 @@
 ﻿using Ambev.DeveloperEvaluation.Domain.Entities;
 using Ambev.DeveloperEvaluation.Domain.Repositories;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ambev.DeveloperEvaluation.ORM.Repositories;
@@ -20,11 +21,36 @@ public class SaleRepository : ISaleRepository
             .FirstOrDefaultAsync(s => s.Id == id, cancellationToken);
     }
 
-    public async Task<List<Sale>> GetAllAsync(CancellationToken cancellationToken)
+    public async Task<(IReadOnlyList<Sale> Items, int Total)> GetAllAsync(int page, int size, string? order, CancellationToken ct)
     {
-        return await _context.Sales
-            .Include(s => s.Items)
-            .ToListAsync(cancellationToken);
+        IQueryable<Sale> salesList = _context.Sales.Include(s => s.Items).AsNoTracking();
+
+        if (!string.IsNullOrWhiteSpace(order))
+        {
+            foreach (var part in order.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+            {
+                var seg = part.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                var field = seg[0].ToLowerInvariant();
+                var desc = seg.Length > 1 && seg[1].Equals("desc", StringComparison.OrdinalIgnoreCase);
+
+                salesList = (field) switch
+                {
+                    "salenumber" => desc ? salesList.OrderByDescending(p => p.SaleNumber) : salesList.OrderBy(p => p.SaleNumber),
+                    "date" => desc ? salesList.OrderByDescending(p => p.Date) : salesList.OrderBy(p => p.Date),
+                    "customer" => desc ? salesList.OrderByDescending(p => p.CustomerName) : salesList.OrderBy(p => p.CustomerName),
+                    _ => salesList
+                };
+            }
+        }
+        else
+        {
+            salesList = salesList.OrderByDescending(p => p.Date);
+        }
+
+        var result = await salesList.Skip((page - 1) * size).Take(size).ToListAsync(ct);
+        var total = await salesList.CountAsync(ct);
+
+        return (result, total);
     }
 
     public async Task<Sale> CreateAsync(Sale sale, CancellationToken cancellationToken)

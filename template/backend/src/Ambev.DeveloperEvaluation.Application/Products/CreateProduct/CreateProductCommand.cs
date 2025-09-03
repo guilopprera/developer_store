@@ -1,7 +1,4 @@
-﻿using Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
-using Ambev.DeveloperEvaluation.Common.Validation;
-using Ambev.DeveloperEvaluation.Domain.Enums;
-using MediatR;
+﻿using MediatR;
 
 namespace Ambev.DeveloperEvaluation.Application.Products.CreateProduct;
 
