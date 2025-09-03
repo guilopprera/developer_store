@@ -41,7 +41,7 @@ Documentação interativa via **Swagger**.
      "DefaultConnection": "Host=localhost;Port=5432;Database=devevaluation;Username=postgres;Password=123456"
    }
 
-3. Clone o repositório:
+3. Rode as Migrations:
    ```bash
    dotnet ef migrations add InitDatabase -p src/Ambev.DeveloperEvaluation.ORM -s src/Ambev.DeveloperEvaluation.WebApi
    dotnet ef database update -p src/Ambev.DeveloperEvaluation.ORM -s src/Ambev.DeveloperEvaluation.WebApi
@@ -50,7 +50,8 @@ Documentação interativa via **Swagger**.
    ```bash
    dotnet run --project src/Ambev.DeveloperEvaluation.WebApi
 
-📖 Endpoints
+
+## 📖 Endpoints
 # Users
 
 POST /api/Users → Criar
@@ -71,6 +72,10 @@ GET /api/Products/{id} → Buscar
 
 DELETE /api/Products/{id} → Remover
 
+GET /api/Products/Categories → Listar categorias (pagina/ordenação)
+
+GET /api/Products/Category/{id} → Listar (pagina/ordenação)
+
 # Sales
 
 POST /api/Sales → Criar (com descontos progressivos)
@@ -83,6 +88,17 @@ GET /api/Sales → Listar (pagina)
 
 GET /api/Sales/{id} → Buscar
 
+# Carts
+
+POST /api/Carts → Criar 
+
+PUT /api/Carts/{id} → Atualizar
+
+PUT /api/Carts/{id}/cancel → Cancelar
+
+GET /api/Carts → Listar (pagina)
+
+GET /api/Carts/{id} → Buscar
 
 ✅ Regras de Negócio
 
