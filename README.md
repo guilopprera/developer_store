@@ -50,6 +50,7 @@ Documentação interativa via **Swagger**.
    ```bash
    dotnet run --project src/Ambev.DeveloperEvaluation.WebApi
 
+👉🏻 Swagger: https://localhost:7181/swagger
 ---
 
 ## 📖 Endpoints
