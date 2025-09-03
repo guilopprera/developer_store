@@ -100,6 +100,8 @@ GET /api/Carts → Listar (pagina)
 
 GET /api/Carts/{id} → Buscar
 
+---
+
 ✅ Regras de Negócio
 
 Descontos em vendas:
