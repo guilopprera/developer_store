@@ -50,6 +50,7 @@ Documentação interativa via **Swagger**.
    ```bash
    dotnet run --project src/Ambev.DeveloperEvaluation.WebApi
 
+---
 
 ## 📖 Endpoints
 # Users
@@ -102,7 +103,7 @@ GET /api/Carts/{id} → Buscar
 
 ---
 
-✅ Regras de Negócio
+## ✅ Regras de Negócio
 
 Descontos em vendas:
 
