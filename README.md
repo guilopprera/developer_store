@@ -95,7 +95,7 @@ POST /api/Carts → Criar
 
 PUT /api/Carts/{id} → Atualizar
 
-PUT /api/Carts/{id}/cancel → Cancelar
+DELETE /api/Carts/{id} → rEMOVER
 
 GET /api/Carts → Listar (pagina)
 
