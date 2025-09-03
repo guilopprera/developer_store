@@ -53,7 +53,7 @@ Documentação interativa via **Swagger**.
 ---
 
 ## 📖 Endpoints
-# Users
+Users
 
 POST /api/Users → Criar
 
@@ -61,7 +61,7 @@ GET /api/Users/{id} → Buscar
 
 DELETE /api/Users/{id} → Remover
 
-# Products
+Products
 
 POST /api/Products → Criar
 
@@ -77,7 +77,7 @@ GET /api/Products/Categories → Listar categorias (pagina/ordenação)
 
 GET /api/Products/Category/{id} → Listar (pagina/ordenação)
 
-# Sales
+Sales
 
 POST /api/Sales → Criar (com descontos progressivos)
 
@@ -89,7 +89,7 @@ GET /api/Sales → Listar (pagina)
 
 GET /api/Sales/{id} → Buscar
 
-# Carts
+Carts
 
 POST /api/Carts → Criar 
 
