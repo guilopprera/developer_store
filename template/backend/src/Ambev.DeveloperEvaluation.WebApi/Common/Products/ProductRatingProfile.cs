@@ -1,4 +1,4 @@
-﻿using Ambev.DeveloperEvaluation.Application.Common;
+﻿using Ambev.DeveloperEvaluation.Application.Common.Products;
 using AutoMapper;
 
 namespace Ambev.DeveloperEvaluation.WebApi.Common.Products

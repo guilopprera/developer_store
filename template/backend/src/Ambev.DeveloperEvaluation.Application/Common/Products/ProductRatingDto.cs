@@ -1,4 +1,4 @@
-﻿namespace Ambev.DeveloperEvaluation.Application.Common;
+﻿namespace Ambev.DeveloperEvaluation.Application.Common.Products;
 
 public class ProductRatingDto
 {

@@ -1,14 +1,6 @@
-﻿namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale;
+﻿using Ambev.DeveloperEvaluation.Application.Common.Sales;
 
-public class UpdateSaleItemResult
-{
-    public Guid ProductId { get; set; }
-    public string ProductName { get; set; } = string.Empty;
-    public decimal UnitPrice { get; set; }
-    public int Quantity { get; set; }
-    public decimal Discount { get; set; }
-    public decimal Total { get; set; }
-}
+namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale;
 
 public class UpdateSaleResult
 {
@@ -19,5 +11,5 @@ public class UpdateSaleResult
     public string Branch { get; set; } = string.Empty;
     public decimal TotalAmount { get; set; }
     public bool Cancelled { get; set; }
-    public List<UpdateSaleItemResult> Items { get; set; } = new();
+    public List<SaleItemDto> Items { get; set; } = new();
 }

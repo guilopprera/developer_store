@@ -22,9 +22,9 @@ public class GetProductHandler : IRequestHandler<GetProductCommand, GetProductRe
 
             return res;
         }
-        catch
+        catch(Exception ex)
         {
-            throw new InvalidOperationException("Error trying to find product");
+            throw new InvalidOperationException("Error trying to find product", ex);
         }
     }
 }

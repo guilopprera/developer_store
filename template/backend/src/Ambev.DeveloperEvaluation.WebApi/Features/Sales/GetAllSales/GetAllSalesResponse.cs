@@ -1,4 +1,6 @@
-﻿namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetAllSales;
+﻿using Ambev.DeveloperEvaluation.WebApi.Common.Sales;
+
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetAllSales;
 
 public class GetAllSalesResponse
 {
@@ -10,14 +12,6 @@ public class GetAllSalesResponse
     public string Branch { get; set; } = string.Empty;
     public decimal TotalAmount { get; set; }
     public bool Cancelled { get; set; }
-    public List<GetAllSaleItemResponse> Items { get; set; } = new();
+    public List<SaleItemResponse> Items { get; set; } = new();
 }
 
-public class GetAllSaleItemResponse
-{
-    public Guid ProductId { get; set; }
-    public decimal UnitPrice { get; set; }
-    public int Quantity { get; set; }
-    public decimal Discount { get; set; }
-    public decimal Total { get; set; }
-}

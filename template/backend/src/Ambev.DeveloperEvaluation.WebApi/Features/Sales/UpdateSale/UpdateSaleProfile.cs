@@ -9,9 +9,7 @@ public class UpdateSaleProfile : Profile
     {
         CreateMap<UpdateSaleRequest, UpdateSaleCommand>()
             .ForMember(d => d.Id, o => o.Ignore());
-        CreateMap<UpdateSaleItemRequest, UpdateSaleItemDto>();
 
         CreateMap<UpdateSaleResult, UpdateSaleResponse>();
-        CreateMap<UpdateSaleItemResult, SaleItemResponse>();
     }
 }

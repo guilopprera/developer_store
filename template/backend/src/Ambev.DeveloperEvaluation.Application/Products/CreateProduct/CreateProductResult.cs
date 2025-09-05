@@ -1,4 +1,4 @@
-﻿using Ambev.DeveloperEvaluation.Application.Common;
+﻿using Ambev.DeveloperEvaluation.Application.Common.Products;
 
 namespace Ambev.DeveloperEvaluation.Application.Products.CreateProduct;
 

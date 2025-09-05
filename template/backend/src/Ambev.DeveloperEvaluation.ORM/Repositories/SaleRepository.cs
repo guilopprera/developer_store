@@ -23,7 +23,7 @@ public class SaleRepository : ISaleRepository
 
     public async Task<(IReadOnlyList<Sale> Items, int Total)> GetAllAsync(int page, int size, string? order, CancellationToken ct)
     {
-        IQueryable<Sale> salesList = _context.Sales.Include(s => s.Items).AsNoTracking();
+        IQueryable<Sale> salesList = _context.Sales.Include(s => s.Items).Where(S => !S.Cancelled).AsNoTracking();
 
         if (!string.IsNullOrWhiteSpace(order))
         {
