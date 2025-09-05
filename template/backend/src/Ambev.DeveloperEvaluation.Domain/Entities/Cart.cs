@@ -38,11 +38,13 @@ public class Cart : BaseEntity
         {
             _items.RemoveAll(i => i.ProductId == productId);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             throw new InvalidOperationException("Product removal error");
         }
     }
+
+    public void SetDate(DateTime date) => Date = date;
 }
 
 public class CartItem : BaseEntity
