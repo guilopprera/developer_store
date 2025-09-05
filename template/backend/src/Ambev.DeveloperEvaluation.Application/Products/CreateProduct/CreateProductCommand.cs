@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using Ambev.DeveloperEvaluation.Application.Common.Products;
+using Ambev.DeveloperEvaluation.Common.Validation;
+using MediatR;
 
 namespace Ambev.DeveloperEvaluation.Application.Products.CreateProduct;
 
@@ -9,6 +11,16 @@ public class CreateProductCommand : IRequest<CreateProductResult>
     public string Description { get; set; } = string.Empty;
     public string Category { get; set; } = string.Empty;
     public string Image { get; set; } = string.Empty;
-    public double RatingRate { get; set; }
-    public int RatingCount { get; set; }
+    public ProductRatingDto ProductRating { get; set; } = new();
+
+    public ValidationResultDetail Validate()
+    {
+        var validator = new CreateProductValidator();
+        var result = validator.Validate(this);
+        return new ValidationResultDetail
+        {
+            IsValid = result.IsValid,
+            Errors = result.Errors.Select(o => (ValidationErrorDetail)o)
+        };
+    }
 }

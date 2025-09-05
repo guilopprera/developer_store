@@ -1,7 +1,7 @@
-﻿using MediatR;
-using FluentValidation;
+﻿using Ambev.DeveloperEvaluation.Domain.Repositories;
 using AutoMapper;
-using Ambev.DeveloperEvaluation.Domain.Repositories;
+using FluentValidation;
+using MediatR;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale;
 

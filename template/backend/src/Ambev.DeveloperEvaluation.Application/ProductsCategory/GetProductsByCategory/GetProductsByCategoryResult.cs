@@ -1,8 +1,8 @@
-using Ambev.DeveloperEvaluation.Application.Common.Products;
+﻿using Ambev.DeveloperEvaluation.Application.Common.Products;
 
-namespace Ambev.DeveloperEvaluation.Application.Products.GetProduct;
+namespace Ambev.DeveloperEvaluation.Application.ProductsCategory.GetProductsByCategory;
 
-public class GetProductResult
+public class GetProductsByCategoryResult
 {
     public Guid Id { get; set; }
     public string Title { get; set; } = string.Empty;
@@ -10,6 +10,5 @@ public class GetProductResult
     public string Description { get; set; } = string.Empty;
     public string Category { get; set; } = string.Empty;
     public string Image { get; set; } = string.Empty;
-    public ProductRatingDto Rating { get; set; } = new ();
-
+    public ProductRatingDto Rating { get; set; } = new();
 }

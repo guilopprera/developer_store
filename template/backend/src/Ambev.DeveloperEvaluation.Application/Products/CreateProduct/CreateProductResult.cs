@@ -1,4 +1,6 @@
-﻿namespace Ambev.DeveloperEvaluation.Application.Products.CreateProduct;
+﻿using Ambev.DeveloperEvaluation.Application.Common.Products;
+
+namespace Ambev.DeveloperEvaluation.Application.Products.CreateProduct;
 
 public class CreateProductResult
 {
@@ -8,6 +10,5 @@ public class CreateProductResult
     public string Description { get; set; } = string.Empty;
     public string Category { get; set; } = string.Empty;
     public string Image { get; set; } = string.Empty;
-    public double RatingRate { get; set; }
-    public int RatingCount { get; set; }
+    public ProductRatingDto Rating { get; set; } = new();
 }

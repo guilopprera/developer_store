@@ -7,10 +7,7 @@ public class GetAllSalesProfile : Profile
 {
     public GetAllSalesProfile()
     {
-        CreateMap<GetAllSalesItemResult, SaleItemResponse>();
-        CreateMap<GetAllSalesResult, GetAllSalesResponse>()
-            .ForMember(d => d.Items, o => o.MapFrom(s => s.Items));
-
+        CreateMap<GetAllSalesResult, GetAllSalesResponse>();
         CreateMap<GetAllSalesPageResult, GetAllSalesPageResponse>();
     }
 }

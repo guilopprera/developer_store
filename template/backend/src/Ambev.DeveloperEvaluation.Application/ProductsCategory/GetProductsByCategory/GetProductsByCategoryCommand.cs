@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Ambev.DeveloperEvaluation.Common.Validation;
+using MediatR;
 
 namespace Ambev.DeveloperEvaluation.Application.ProductsCategory.GetProductsByCategory;
 
@@ -16,4 +17,15 @@ public class GetProductsByCategoryCommand : IRequest<GetProductsByCategoryPageRe
     public int Page { get; set; }
     public int Size { get; set; }
     public string? Order { get; set; }
+
+    public ValidationResultDetail Validate()
+    {
+        var validator = new GetProductsByCategoryValidator();
+        var result = validator.Validate(this);
+        return new ValidationResultDetail
+        {
+            IsValid = result.IsValid,
+            Errors = result.Errors.Select(o => (ValidationErrorDetail)o)
+        };
+    }
 }
