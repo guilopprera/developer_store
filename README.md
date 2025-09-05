@@ -1,4 +1,4 @@
-# Developer Store 🏪
+# 🏪 Developer Store 🏪
 
 API de gerenciamento de **Usuários, Produtos e Vendas**, desenvolvida em **.NET 7** com **DDD, CQRS e Clean Architecture**.  
 Banco principal: **PostgreSQL** | Auditoria/Logs: **MongoDB**.  
