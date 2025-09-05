@@ -9,5 +9,14 @@ public class UpdateSaleResponse
     public string Branch { get; set; } = string.Empty;
     public decimal TotalAmount { get; set; }
     public bool Cancelled { get; set; }
-    public List<SaleItemResponse> Items { get; set; } = new();
+    public List<UpdateSaleItemResponse> Items { get; set; } = new();
+}
+
+public class UpdateSaleItemResponse
+{
+    public Guid ProductId { get; set; }
+    public int Quantity { get; set; }
+    public decimal UnitPrice { get; set; }
+    public decimal Discount { get; set; }
+    public decimal Total { get; set; }
 }
