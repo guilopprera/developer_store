@@ -1,4 +1,4 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Entities;
+﻿using Ambev.DeveloperEvaluation.WebApi.Common.Products;
 
 namespace Ambev.DeveloperEvaluation.WebApi.Features.ProductsCategory.GetProductsByCategory
 {
@@ -11,11 +11,5 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.ProductsCategory.GetProducts
         public string Category { get; set; } = string.Empty;
         public string Image { get; set; } = string.Empty;
         public ProductRatingResponse Rating { get; set; } = new();
-    }
-
-    public class ProductRatingResponse
-    {
-        public double Rate { get; set; }
-        public int Count { get; set; }
     }
 }

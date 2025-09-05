@@ -1,5 +1,4 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Entities;
-using Ambev.DeveloperEvaluation.Domain.Repositories;
+﻿using Ambev.DeveloperEvaluation.Domain.Repositories;
 using AutoMapper;
 using MediatR;
 
@@ -20,7 +19,7 @@ public class GetProductsByCategoryHandler : IRequestHandler<GetProductsByCategor
         try
         {
             var (items, total) = await _repo.GetByCategoryAsync(request.Category, request.Page, request.Size, request.Order, ct);
-            var data = _mapper.Map<IReadOnlyList<Product>>(items);
+            var data = _mapper.Map<List<GetProductsByCategoryResult>>(items);
 
             var totalPages = (int)Math.Ceiling(total / (double)request.Size);
 

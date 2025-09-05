@@ -1,10 +1,8 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Entities;
-
-namespace Ambev.DeveloperEvaluation.Application.ProductsCategory.GetProductsByCategory;
+﻿namespace Ambev.DeveloperEvaluation.Application.ProductsCategory.GetProductsByCategory;
 
 public class GetProductsByCategoryPageResult
 {
-    public GetProductsByCategoryPageResult(IReadOnlyList<Product> products, int totalItems, int currentPage, int totalPages)
+    public GetProductsByCategoryPageResult(IReadOnlyList<GetProductsByCategoryResult> products, int totalItems, int currentPage, int totalPages)
     {
         Products = products;
         TotalItems = totalItems;
@@ -12,7 +10,7 @@ public class GetProductsByCategoryPageResult
         TotalPages = totalPages;
     }
 
-    public IReadOnlyList<Product> Products { get; }
+    public IReadOnlyList<GetProductsByCategoryResult> Products { get; }
     public int TotalItems { get; }
     public int CurrentPage { get; }
     public int TotalPages { get; }

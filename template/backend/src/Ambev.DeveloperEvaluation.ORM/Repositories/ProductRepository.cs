@@ -57,10 +57,7 @@ public class ProductRepository : IProductRepository
 
     public async Task<(IReadOnlyList<Product> Products, int Total)> GetByCategoryAsync(string category, int page, int size, string? order, CancellationToken ct)
     {
-        var products = _context.Products
-                    .AsNoTracking()
-                    .Where(p => p.Category == category);
-
+        IQueryable<Product> products = _context.Products.AsNoTracking().Where(p => p.Category == category);
 
         if (!string.IsNullOrWhiteSpace(order))
         {
@@ -105,7 +102,7 @@ public class ProductRepository : IProductRepository
     public async Task<string> DeleteAsync(Guid id, CancellationToken ct)
     {
         var entity = await GetByIdAsync(id, ct);
-        if (entity is null) 
+        if (entity is null)
             return "Error trying to remove product";
 
         _context.Products.Remove(entity);

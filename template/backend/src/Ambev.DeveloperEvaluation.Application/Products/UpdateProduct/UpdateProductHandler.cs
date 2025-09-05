@@ -24,7 +24,7 @@ public class UpdateProductHandler : IRequestHandler<UpdateProductCommand, Update
             var entity = await _repo.GetByIdAsync(request.Id, ct) ?? throw new InvalidOperationException("Product not found");
 
             entity.Update(request.Title, request.Price, request.Description, request.Category, request.Image,
-                new Domain.Entities.ProductRating(request.RatingRate, request.RatingCount));
+                new Domain.Entities.ProductRating(request.ProductRating.Rate, request.ProductRating.Count));
 
             await _repo.UpdateAsync(entity, ct);
 

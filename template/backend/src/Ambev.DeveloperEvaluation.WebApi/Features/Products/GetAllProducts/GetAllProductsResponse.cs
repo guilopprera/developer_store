@@ -1,6 +1,8 @@
-﻿namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.GetAllProducts;
+﻿using Ambev.DeveloperEvaluation.WebApi.Common.Products;
 
-public  class GetAllProductsResponse
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.GetAllProducts;
+
+public class GetAllProductsResponse
 {
     public Guid Id { get; set; }
     public string Title { get; set; } = string.Empty;
@@ -9,10 +11,4 @@ public  class GetAllProductsResponse
     public string Category { get; set; } = string.Empty;
     public string Image { get; set; } = string.Empty;
     public ProductRatingResponse Rating { get; set; } = new();
-}
-
-public class ProductRatingResponse
-{
-    public double Rate { get; set; }
-    public int Count { get; set; }
 }

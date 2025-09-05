@@ -1,4 +1,4 @@
-using Ambev.DeveloperEvaluation.Domain.Entities;
+using Ambev.DeveloperEvaluation.Application.Common;
 
 namespace Ambev.DeveloperEvaluation.Application.Products.GetProduct;
 
@@ -10,6 +10,6 @@ public class GetProductResult
     public string Description { get; set; } = string.Empty;
     public string Category { get; set; } = string.Empty;
     public string Image { get; set; } = string.Empty;
-    public ProductRating Rating { get; set; } = new ProductRating(0, 0);
+    public ProductRatingDto Rating { get; set; } = new ();
 
 }

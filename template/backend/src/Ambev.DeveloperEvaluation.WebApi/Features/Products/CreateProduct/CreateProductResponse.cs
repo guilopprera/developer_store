@@ -1,4 +1,6 @@
-﻿namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.CreateProduct;
+﻿using Ambev.DeveloperEvaluation.WebApi.Common.Products;
+
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.CreateProduct;
 
 public class CreateProductResponse
 {
@@ -8,7 +10,5 @@ public class CreateProductResponse
     public string Description { get; set; } = string.Empty;
     public string Category { get; set; } = string.Empty;
     public string Image { get; set; } = string.Empty;
-
-    public double RatingRate { get; set; }
-    public int RatingCount { get; set; }
+    public ProductRatingResponse Rating { get; set; } = new();
 }

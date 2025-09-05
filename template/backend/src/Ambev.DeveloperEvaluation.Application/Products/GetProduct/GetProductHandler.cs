@@ -15,12 +15,16 @@ public class GetProductHandler : IRequestHandler<GetProductCommand, GetProductRe
         try
         {
             var entity = await _repo.GetByIdAsync(request.Id, ct);
+            var res = _mapper.Map<GetProductResult>(entity);
 
-            return _mapper.Map<GetProductResult>(entity);
+            if (res == null)
+                throw new InvalidOperationException("Product not found");
+
+            return res;
         }
         catch
         {
-            throw new InvalidOperationException("Product not found");
+            throw new InvalidOperationException("Error trying to find product");
         }
     }
 }
