@@ -16,13 +16,13 @@ public class CartRepository : ICartRepository
     public async Task<Cart?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
         return await _context.Carts
-            //.Include(s => s.Items)
+            .Include(c => c.Items)
             .FirstOrDefaultAsync(s => s.Id == id, cancellationToken);
     }
 
     public async Task<(IReadOnlyList<Cart> Carts, int Total)> GetAllAsync(int page, int size, string? order, CancellationToken ct)
     {
-        IQueryable<Cart> carts = _context.Carts.AsNoTracking();
+        IQueryable<Cart> carts = _context.Carts.Include(c => c.Items).AsNoTracking();
 
         if (!string.IsNullOrWhiteSpace(order))
         {
